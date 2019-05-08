@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Từ điển tiếng anh</title>
+</head>
+<body>
+
+<h3>Nhập từ tiếng anh cần tra nghĩa</h3>
+<p>--hello, thank you, welcome, good morning,good afternoon--</p>
+<p>--Bạn có thể nhập chữ hoa, chữ thường thoải mái</p>
+<input type="text" id="wordInput">
+<button type="button" onclick="searchFunction()">OK</button>
+<div id="result"></div>
+<script>
+    let english = ["hello", "thank you", "welcome", "good morning", "good afternoon"];
+    let vietnamese = ["xin chào", "cảm ơn", "chào mừng", "chào buổi sáng", "chào buổi trưa"];
+    let wordInput;
+    let wordConvert;
+
+    function convertInput(StrInput) {//Chuyển từ chũ cái hoa thành chữ cái thường
+        let arrUpper = [];
+        let arrLower = [];
+        let arrInput = [];
+        let upperIndex;
+        const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lower = "abcdefghijklmnopqrstuvwxyz";
+        for (i = 0; i < upper.length; i++) {
+            //Chuyển từ String sang Array
+            arrUpper[i] = upper[i];
+            arrLower[i] = lower[i];
+        }
+        for (i = 0; i < StrInput.length; i++) {
+            arrInput[i] = StrInput[i];//Biến StrInput thành ArrInput để thao tác
+        }
+        for (i = 0; i < arrInput.length; i++) {
+            upperIndex = arrUpper.indexOf(arrInput[i]);//Tim gia tri index cua arrInput[i] trong mang arrUpper
+
+            if (upperIndex >= 0) arrInput[i] = arrLower[upperIndex];//neu upperIndex co gia tri lon hon 0 thi tuc la chu cai
+            //hien tai la chu hoa --> chuyen thanh chu thuong
+        }
+        return arrInput.join("");
+    }
+
+    function searchFunction() {
+        wordInput = document.getElementById("wordInput").value;
+        wordConvert = convertInput(wordInput);
+
+        let arrindex = english.indexOf(wordConvert);
+        document.getElementById("result").innerHTML = vietnamese[arrindex];
+    }
+</script>
+<style>
+    #result {
+        display: block;
+        margin: 10px;
+    }
+</style>
+</body>
+</html>
