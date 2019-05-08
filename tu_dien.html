@@ -45,9 +45,12 @@
     function searchFunction() {
         wordInput = document.getElementById("wordInput").value;
         wordConvert = convertInput(wordInput);
+        let arrindex;
+        arrindex = english.indexOf(wordConvert);
+        if (arrindex >= 0) document.getElementById("result").innerHTML = vietnamese[arrindex];
+        else document.getElementById("result").innerHTML = "Không tìm thấy từ này trong từ điển";
 
-        let arrindex = english.indexOf(wordConvert);
-        document.getElementById("result").innerHTML = vietnamese[arrindex];
+
     }
 </script>
 <style>
